@@ -1,0 +1,371 @@
+:root {
+  --navy: #0b1220;
+  --navy-soft: #111827;
+  --charcoal: #1f2937;
+  --slate: #475569;
+  --muted: #94a3b8;
+  --gold: #d4af73;
+  --gold-soft: #c9a35f;
+  --cream: #f8f6f1;
+  --white: #ffffff;
+  --line: #e5e7eb;
+}
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  margin: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  letter-spacing: 0.2px;
+}
+
+.luxury-navbar {
+  background: rgba(11, 18, 32, 0.96);
+  backdrop-filter: blur(8px);
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(212, 175, 115, 0.15);
+}
+
+.brand-mark {
+  color: var(--white) !important;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+.navbar .nav-link {
+  color: rgba(255,255,255,0.88) !important;
+  margin-left: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--gold) !important;
+}
+
+.navbar .nav-link.nav-cta {
+  border: 1px solid rgba(212, 175, 115, 0.55);
+  padding: 10px 16px !important;
+  margin-left: 24px;
+}
+
+.hero-section {
+  padding: 110px 0 90px;
+  background:
+    linear-gradient(180deg, rgba(11,18,32,0.95), rgba(11,18,32,0.85)),
+    radial-gradient(circle at top left, rgba(212,175,115,0.18), transparent 30%);
+  color: var(--white);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.eyebrow-gold {
+  color: var(--gold);
+}
+
+.hero-title {
+  font-size: 4.2rem;
+  line-height: 0.98;
+  margin-bottom: 22px;
+  max-width: 800px;
+}
+
+.hero-text {
+  font-size: 1.06rem;
+  line-height: 1.9;
+  max-width: 720px;
+  color: rgba(255,255,255,0.84);
+  margin-bottom: 32px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-luxury-primary,
+.btn-luxury-secondary {
+  text-decoration: none;
+  padding: 14px 22px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  display: inline-block;
+}
+
+.btn-luxury-primary {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.btn-luxury-primary:hover {
+  background: #e3bb79;
+  color: var(--navy);
+}
+
+.btn-luxury-secondary {
+  border: 1px solid rgba(255,255,255,0.22);
+  color: var(--white);
+}
+
+.btn-luxury-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.hero-image-frame {
+  padding: 14px;
+  border: 1px solid rgba(212,175,115,0.28);
+  background: rgba(255,255,255,0.03);
+  box-shadow: 0 22px 60px rgba(0,0,0,0.22);
+}
+
+.hero-image-frame img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.section-dark {
+  background: #0f172a;
+  color: var(--white);
+  padding: 90px 0;
+}
+
+.section-heading h2 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.luxury-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(212,175,115,0.12);
+  padding: 34px 28px;
+  height: 100%;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.14);
+}
+
+.card-number {
+  color: var(--gold);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.luxury-card h3 {
+  color: var(--white);
+  font-size: 2rem;
+  margin-bottom: 14px;
+}
+
+.luxury-card p {
+  color: rgba(255,255,255,0.78);
+  line-height: 1.8;
+}
+
+.section-light {
+  padding: 90px 0;
+  background: var(--cream);
+}
+
+.section-light h2 {
+  font-size: 3rem;
+  color: var(--navy);
+}
+
+.body-copy {
+  color: var(--slate);
+  line-height: 1.9;
+  font-size: 1rem;
+}
+
+.quote-panel {
+  background: var(--white);
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 18px 40px rgba(15,23,42,0.08);
+  padding: 46px 36px;
+}
+
+.quote-text {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2.4rem;
+  line-height: 1.2;
+  color: var(--navy);
+  margin: 0;
+}
+
+.resume-hero {
+  background: linear-gradient(180deg, #0b1220, #111827);
+  color: var(--white);
+  padding: 90px 0 70px;
+}
+
+.page-title {
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  color: rgba(255,255,255,0.82);
+  max-width: 760px;
+  line-height: 1.8;
+}
+
+.resume-main {
+  padding: 70px 0 90px;
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 34px;
+}
+
+.resume-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.sidebar-panel {
+  background: var(--white);
+  padding: 26px;
+  border-top: 3px solid var(--gold);
+  box-shadow: 0 16px 35px rgba(15,23,42,0.06);
+}
+
+.sidebar-panel h3 {
+  font-size: 1.9rem;
+  margin-bottom: 16px;
+  color: var(--navy);
+}
+
+.sidebar-panel p,
+.sidebar-panel li {
+  color: var(--slate);
+  line-height: 1.8;
+}
+
+.sidebar-panel ul {
+  padding-left: 18px;
+  margin-bottom: 0;
+}
+
+.resume-content {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.resume-section {
+  background: var(--white);
+  padding: 34px;
+  box-shadow: 0 16px 35px rgba(15,23,42,0.06);
+}
+
+.resume-section h2 {
+  font-size: 2.3rem;
+  margin-bottom: 18px;
+  color: var(--navy);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+}
+
+.resume-section p,
+.resume-section li {
+  color: var(--slate);
+  line-height: 1.85;
+}
+
+.resume-entry {
+  margin-bottom: 28px;
+}
+
+.resume-entry:last-child {
+  margin-bottom: 0;
+}
+
+.resume-entry h3 {
+  font-size: 2rem;
+  margin-bottom: 6px;
+  color: var(--navy);
+}
+
+.resume-role {
+  color: var(--charcoal);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.resume-role span {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.site-footer {
+  background: #0b1220;
+  color: rgba(255,255,255,0.72);
+  text-align: center;
+  padding: 24px 0;
+  border-top: 1px solid rgba(212,175,115,0.12);
+}
+
+.site-footer p {
+  margin: 0;
+  letter-spacing: 0.4px;
+}
+
+@media (max-width: 992px) {
+  .hero-title,
+  .page-title {
+    font-size: 3rem;
+  }
+
+  .resume-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar .nav-link.nav-cta {
+    margin-left: 16px;
+    margin-top: 8px;
+    display: inline-block;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section,
+  .section-dark,
+  .section-light,
+  .resume-main {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .hero-title,
+  .page-title {
+    font-size: 2.5rem;
+  }
+
+  .section-heading h2,
+  .section-light h2 {
+    font-size: 2.2rem;
+  }
+
+  .quote-text {
+    font-size: 1.9rem;
+  }
+}

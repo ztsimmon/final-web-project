@@ -1,0 +1,159 @@
+:root {
+  --navy: #0b1220;
+  --navy-soft: #111827;
+  --charcoal: #1f2937;
+  --slate: #475569;
+  --gold: #d4af73;
+  --cream: #f8f6f1;
+  --white: #ffffff;
+  --line: #e5e7eb;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+h1, h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.scratch-hero {
+  background:
+    linear-gradient(180deg, rgba(11,18,32,0.86), rgba(11,18,32,0.80)),
+    url("../images/finance.jpg") center/cover no-repeat;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  border-bottom: 4px solid var(--gold);
+}
+
+.scratch-overlay {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  color: var(--white);
+}
+
+.scratch-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.scratch-hero h1 {
+  font-size: 4rem;
+  line-height: 0.98;
+  margin-bottom: 18px;
+  max-width: 820px;
+}
+
+.scratch-intro {
+  max-width: 720px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.84);
+  margin-bottom: 26px;
+}
+
+.scratch-nav a {
+  color: var(--gold);
+  text-decoration: none;
+  margin-right: 18px;
+  font-weight: 600;
+}
+
+.scratch-nav a:hover {
+  color: #ffffff;
+}
+
+.scratch-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 70px;
+}
+
+.scratch-box {
+  background: var(--white);
+  margin: 0 0 28px 0;
+  padding: 34px;
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 16px 35px rgba(15,23,42,0.06);
+}
+
+.scratch-box h2 {
+  font-size: 2.3rem;
+  color: var(--navy);
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.scratch-box p,
+.scratch-box li {
+  color: var(--slate);
+  line-height: 1.9;
+}
+
+.scratch-box ol,
+.scratch-box ul {
+  padding-left: 24px;
+}
+
+.scratch-image {
+  width: 100%;
+  max-width: 760px;
+  display: block;
+  margin-top: 18px;
+  box-shadow: 0 18px 40px rgba(15,23,42,0.10);
+}
+
+.video-frame {
+  margin-top: 12px;
+}
+
+.video-frame iframe {
+  width: 100%;
+  max-width: 800px;
+  height: 450px;
+  border: none;
+}
+
+.note-text {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+.scratch-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.72);
+  text-align: center;
+  padding: 24px 20px;
+}
+
+.scratch-footer p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .scratch-hero h1 {
+    font-size: 2.6rem;
+  }
+
+  .scratch-box {
+    padding: 26px;
+  }
+
+  .scratch-box h2 {
+    font-size: 1.9rem;
+  }
+
+  .video-frame iframe {
+    height: 260px;
+  }
+}

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projection Studio | Zachary Simmons</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0b1220;
+      --navy-soft: #111827;
+      --charcoal: #1f2937;
+      --slate: #475569;
+      --muted: #94a3b8;
+      --gold: #d4af73;
+      --gold-soft: #e1be84;
+      --cream: #f8f6f1;
+      --white: #ffffff;
+      --glass: rgba(255,255,255,0.06);
+      --glass-strong: rgba(255,255,255,0.09);
+      --line: rgba(255,255,255,0.12);
+      --shadow: 0 24px 60px rgba(0,0,0,0.30);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", Arial, sans-serif;
+      color: #e5e7eb;
+      background:
+        radial-gradient(circle at top left, rgba(212,175,115,0.12), transparent 26%),
+        linear-gradient(135deg, #08101c 0%, #0f172a 45%, #1f2937 100%);
+    }
+
+    .app-shell {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 36px 20px 60px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.74rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 2.2rem;
+      color: var(--cream);
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .hero-panel {
+      background: var(--glass);
+      border: 1px solid rgba(212,175,115,0.22);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      padding: 34px;
+      margin-bottom: 22px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.74rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 3.5rem;
+      line-height: 0.95;
+      color: var(--white);
+      max-width: 760px;
+    }
+
+    .hero-text {
+      color: #d1d5db;
+      line-height: 1.9;
+      max-width: 760px;
+      margin-bottom: 22px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .hero-point {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 16px;
+    }
+
+    .hero-point-label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-point-value {
+      color: var(--white);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .hero-side-card {
+      background: rgba(255,255,255,0.04);
+      border-left: 3px solid var(--gold);
+      padding: 22px;
+      height: 100%;
+    }
+
+    .hero-side-card h2 {
+      margin: 0 0 12px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      color: var(--white);
+      font-size: 2rem;
+    }
+
+    .hero-side-card p {
+      margin: 0;
+      color: #cbd5e1;
+      line-height: 1.85;
+    }
+
+    .preset-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .preset-btn {
+      background: transparent;
+      color: #f9fafb;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 10px 16px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .preset-btn:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+    }
+
+    .panel {
+      background: var(--glass);
+      border: 1px solid rgba(212,175,115,0.18);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      padding: 28px;
+    }
+
+    .panel h2 {
+      margin: 0 0 18px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      color: var(--white);
+      font-size: 2.1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: #f3f4f6;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    input, select {
+      padding: 14px 15px;
+      border: none;
+      background: rgba(255,255,255,0.94);
+      color: #111827;
+      font-size: 0.98rem;
+      outline: none;
+    }
+
+    .helper {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
+    .button-row {
+      margin-top: 22px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #111827;
+      border: none;
+      padding: 14px 20px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #f9fafb;
+      border: 1px solid rgba(255,255,255,0.20);
+      padding: 14px 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
+      opacity: 0.92;
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: start;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .results-subtitle {
+      color: #cbd5e1;
+      line-height: 1.8;
+      max-width: 620px;
+    }
+
+    .status-pill {
+      padding: 10px 14px;
+      border: 1px solid rgba(212,175,115,0.35);
+      color: var(--gold-soft);
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+    }
+
+    .progress-wrap {
+      margin: 22px 0;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 8px;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+      transition: width 0.4s ease;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 20px;
+      margin-top: 20px;
+    }
+
+    .metric {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .metric-label {
+      color: #94a3b8;
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+    }
+
+    .metric-value {
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .summary-box, .milestone-box, .comparison-box {
+      margin-top: 22px;
+      padding: 18px;
+      background: rgba(255,255,255,0.05);
+      border-left: 3px solid var(--gold);
+    }
+
+    .summary-box h3,
+    .milestone-box h3,
+    .comparison-box h3 {
+      margin: 0 0 10px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      color: var(--white);
+      font-size: 1.7rem;
+    }
+
+    .summary-box p,
+    .milestone-box p,
+    .comparison-box p {
+      margin: 0;
+      color: #dbe3ee;
+      line-height: 1.85;
+    }
+
+    .milestone-list {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      color: #dbe3ee;
+      line-height: 1.9;
+    }
+
+    .footnote {
+      margin-top: 18px;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.55rem;
+      }
+
+      .hero-points,
+      .form-grid,
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel,
+      .panel {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="topbar">
+      <div class="brand-block">
+        <div class="brand-eyebrow">Executive Financial Tool</div>
+        <div class="brand">Projection Studio</div>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Résumé</a>
+        <a href="scratch.html">Financial Insights</a>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Strategic Savings & Wealth Planning</div>
+          <h1>Model the path to your target with more clarity, structure, and realism.</h1>
+          <div class="hero-text">
+            This planning tool estimates how long it may take to reach a financial goal based on
+            your current savings, monthly contribution, return assumption, annual contribution growth,
+            and time horizon. It is designed to feel like a premium planning interface rather than a basic classroom calculator.
+          </div>
+
+          <div class="preset-row">
+            <button class="preset-btn" onclick="applyPreset('conservative')">Conservative Profile</button>
+            <button class="preset-btn" onclick="applyPreset('balanced')">Balanced Profile</button>
+            <button class="preset-btn" onclick="applyPreset('aggressive')">Aggressive Profile</button>
+            <button class="preset-btn" onclick="applyPreset('highSaver')">High Saver Profile</button>
+          </div>
+
+          <div class="hero-points">
+            <div class="hero-point">
+              <div class="hero-point-label">Designed For</div>
+              <div class="hero-point-value">Goal-based savings and long-range planning</div>
+            </div>
+            <div class="hero-point">
+              <div class="hero-point-label">Output Quality</div>
+              <div class="hero-point-value">Scenario summary, milestones, and projection detail</div>
+            </div>
+            <div class="hero-point">
+              <div class="hero-point-label">Positioning</div>
+              <div class="hero-point-value">Clean, professional, executive-style experience</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side-card">
+          <h2>What makes this better</h2>
+          <p>
+            Instead of only telling you how many months it may take to hit a goal, this version also
+            shows your estimated ending balance, contribution totals, projected growth, current progress,
+            milestone timing, and the likely effect of annual increases to your savings rate.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-grid">
+      <div class="panel">
+        <h2>Planning Inputs</h2>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="goal">Savings Goal ($)</label>
+            <input type="number" id="goal" placeholder="100000">
+            <div class="helper">Your target balance.</div>
+          </div>
+
+          <div class="field">
+            <label for="starting">Current Savings ($)</label>
+            <input type="number" id="starting" placeholder="12000">
+            <div class="helper">Your existing starting balance.</div>
+          </div>
+
+          <div class="field">
+            <label for="monthly">Monthly Contribution ($)</label>
+            <input type="number" id="monthly" placeholder="1500">
+            <div class="helper">What you contribute each month.</div>
+          </div>
+
+          <div class="field">
+            <label for="rate">Annual Return (%)</label>
+            <input type="number" id="rate" placeholder="6">
+            <div class="helper">Estimated average annual growth rate.</div>
+          </div>
+
+          <div class="field">
+            <label for="increase">Annual Contribution Increase (%)</label>
+            <input type="number" id="increase" placeholder="3">
+            <div class="helper">Optional annual increase to your monthly contribution.</div>
+          </div>
+
+          <div class="field">
+            <label for="years">Projection Limit (Years)</label>
+            <input type="number" id="years" placeholder="30">
+            <div class="helper">Maximum projection window.</div>
+          </div>
+
+          <div class="field full">
+            <label for="goalType">Primary Objective</label>
+            <select id="goalType">
+              <option value="General Wealth Goal">General Wealth Goal</option>
+              <option value="Emergency Fund">Emergency Fund</option>
+              <option value="Home Down Payment">Home Down Payment</option>
+              <option value="Investment Account Target">Investment Account Target</option>
+              <option value="Business Capital Reserve">Business Capital Reserve</option>
+            </select>
+            <div class="helper">Used for your summary output language.</div>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button class="btn-primary" onclick="runProjection()">Run Projection</button>
+          <button class="btn-secondary" onclick="resetFields()">Reset</button>
+        </div>
+
+        <div class="footnote">
+          This is a simplified educational planning tool for your project. It is not investment, legal, or tax advice.
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="results-header">
+          <div>
+            <h2>Projection Output</h2>
+            <div class="results-subtitle">
+              Enter your inputs and run the projection to generate an executive-style summary of your path to the target.
+            </div>
+          </div>
+          <div class="status-pill" id="statusPill">Awaiting Inputs</div>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-meta">
+            <div>Current progress toward target</div>
+            <div id="progressLabel">0%</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+
+        <div class="metrics-grid" id="metricsGrid">
+          <div class="metric">
+            <div class="metric-label">Estimated Time to Goal</div>
+            <div class="metric-value">—</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Projected Ending Balance</div>
+            <div class="metric-value">—</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Total Contributions</div>
+            <div class="metric-value">—</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Estimated Growth</div>
+            <div class="metric-value">—</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Final Monthly Contribution</div>
+            <div class="metric-value">—</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Goal Shortfall / Surplus</div>
+            <div class="metric-value">—</div>
+          </div>
+        </div>
+
+        <div class="summary-box" id="summaryBox">
+          <h3>Executive Summary</h3>
+          <p>Run the projection to see your outcome summary.</p>
+        </div>
+
+        <div class="milestone-box" id="milestoneBox">
+          <h3>Milestone Timeline</h3>
+          <p>Milestones will appear here after your projection runs.</p>
+        </div>
+
+        <div class="comparison-box" id="comparisonBox">
+          <h3>Contribution Insight</h3>
+          <p>This section will compare your current plan against a slightly stronger contribution scenario.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function currency(value) {
+      return "$" + value.toLocaleString(undefined, { maximumFractionDigits: 2 });
+    }
+
+    function formatYearsMonths(totalMonths) {
+      const years = Math.floor(totalMonths / 12);
+      const months = totalMonths % 12;
+      return `${years} year(s), ${months} month(s)`;
+    }
+
+    function applyPreset(type) {
+      if (type === "conservative") {
+        document.getElementById("goal").value = 50000;
+        document.getElementById("starting").value = 5000;
+        document.getElementById("monthly").value = 800;
+        document.getElementById("rate").value = 3;
+        document.getElementById("increase").value = 2;
+        document.getElementById("years").value = 20;
+        document.getElementById("goalType").value = "Emergency Fund";
+      } else if (type === "balanced") {
+        document.getElementById("goal").value = 100000;
+        document.getElementById("starting").value = 12000;
+        document.getElementById("monthly").value = 1500;
+        document.getElementById("rate").value = 6;
+        document.getElementById("increase").value = 3;
+        document.getElementById("years").value = 25;
+        document.getElementById("goalType").value = "Investment Account Target";
+      } else if (type === "aggressive") {
+        document.getElementById("goal").value = 250000;
+        document.getElementById("starting").value = 25000;
+        document.getElementById("monthly").value = 2500;
+        document.getElementById("rate").value = 9;
+        document.getElementById("increase").value = 5;
+        document.getElementById("years").value = 30;
+        document.getElementById("goalType").value = "General Wealth Goal";
+      } else if (type === "highSaver") {
+        document.getElementById("goal").value = 150000;
+        document.getElementById("starting").value = 20000;
+        document.getElementById("monthly").value = 3000;
+        document.getElementById("rate").value = 6;
+        document.getElementById("increase").value = 4;
+        document.getElementById("years").value = 20;
+        document.getElementById("goalType").value = "Home Down Payment";
+      }
+    }
+
+    function simulate(goal, starting, monthly, annualRate, increase, yearsLimit) {
+      let balance = starting;
+      let months = 0;
+      let currentMonthly = monthly;
+      let totalContributions = starting;
+      let monthLimit = yearsLimit * 12;
+      let monthlyRate = annualRate / 100 / 12;
+
+      let milestone25 = null;
+      let milestone50 = null;
+      let milestone75 = null;
+      let milestone100 = null;
+
+      while (months < monthLimit) {
+        if (balance >= goal && milestone100 === null) {
+          milestone100 = months;
+          break;
+        }
+
+        balance = balance * (1 + monthlyRate) + currentMonthly;
+        totalContributions += currentMonthly;
+        months++;
+
+        const progress = balance / goal;
+        if (milestone25 === null && progress >= 0.25) milestone25 = months;
+        if (milestone50 === null && progress >= 0.50) milestone50 = months;
+        if (milestone75 === null && progress >= 0.75) milestone75 = months;
+        if (milestone100 === null && progress >= 1.00) {
+          milestone100 = months;
+          break;
+        }
+
+        if (months % 12 === 0) {
+          currentMonthly = currentMonthly * (1 + increase / 100);
+        }
+      }
+
+      return {
+        balance,
+        months,
+        totalContributions,
+        finalMonthlyContribution: currentMonthly,
+        reachedGoal: balance >= goal,
+        milestone25,
+        milestone50,
+        milestone75,
+        milestone100
+      };
+    }
+
+    function runProjection() {
+      const goal = parseFloat(document.getElementById("goal").value);
+      const starting = parseFloat(document.getElementById("starting").value) || 0;
+      const monthly = parseFloat(document.getElementById("monthly").value);
+      const annualRate = parseFloat(document.getElementById("rate").value) || 0;
+      const increase = parseFloat(document.getElementById("increase").value) || 0;
+      const years = parseFloat(document.getElementById("years").value) || 30;
+      const goalType = document.getElementById("goalType").value;
+
+      const statusPill = document.getElementById("statusPill");
+      const metricsGrid = document.getElementById("metricsGrid");
+      const summaryBox = document.getElementById("summaryBox");
+      const milestoneBox = document.getElementById("milestoneBox");
+      const comparisonBox = document.getElementById("comparisonBox");
+      const progressFill = document.getElementById("progressFill");
+      const progressLabel = document.getElementById("progressLabel");
+
+      if (isNaN(goal) || isNaN(monthly) || goal <= 0 || monthly <= 0 || years <= 0) {
+        statusPill.textContent = "Invalid Inputs";
+        progressFill.style.width = "0%";
+        progressLabel.textContent = "0%";
+
+        metricsGrid.innerHTML = `
+          <div class="metric"><div class="metric-label">Status</div><div class="metric-value">Please enter valid positive values.</div></div>
+        `;
+
+        summaryBox.innerHTML = `
+          <h3>Executive Summary</h3>
+          <p>Please enter valid positive numbers for your savings goal, monthly contribution, and projection window.</p>
+        `;
+
+        milestoneBox.innerHTML = `
+          <h3>Milestone Timeline</h3>
+          <p>No milestone analysis is available until the projection runs successfully.</p>
+        `;
+
+        comparisonBox.innerHTML = `
+          <h3>Contribution Insight</h3>
+          <p>Comparison analysis is unavailable until valid planning inputs are provided.</p>
+        `;
+        return;
+      }
+
+      const currentProgress = Math.min((starting / goal) * 100, 100);
+      progressFill.style.width = currentProgress + "%";
+      progressLabel.textContent = currentProgress.toFixed(1) + "%";
+
+      if (starting >= goal) {
+        statusPill.textContent = "Goal Already Met";
+
+        metricsGrid.innerHTML = `
+          <div class="metric"><div class="metric-label">Estimated Time to Goal</div><div class="metric-value">Already achieved</div></div>
+          <div class="metric"><div class="metric-label">Current Balance</div><div class="metric-value">${currency(starting)}</div></div>
+          <div class="metric"><div class="metric-label">Savings Goal</div><div class="metric-value">${currency(goal)}</div></div>
+          <div class="metric"><div class="metric-label">Surplus Above Goal</div><div class="metric-value">${currency(starting - goal)}</div></div>
+          <div class="metric"><div class="metric-label">Monthly Contribution</div><div class="metric-value">${currency(monthly)}</div></div>
+          <div class="metric"><div class="metric-label">Primary Objective</div><div class="metric-value">${goalType}</div></div>
+        `;
+
+        summaryBox.innerHTML = `
+          <h3>Executive Summary</h3>
+          <p>
+            Your current balance already meets or exceeds the selected target for <strong>${goalType}</strong>.
+            This means the financial objective is already funded, and future contributions can now be redirected
+            toward a higher target, increased reserves, or longer-range wealth accumulation.
+          </p>
+        `;
+
+        milestoneBox.innerHTML = `
+          <h3>Milestone Timeline</h3>
+          <ul class="milestone-list">
+            <li>25% milestone: already surpassed</li>
+            <li>50% milestone: already surpassed</li>
+            <li>75% milestone: already surpassed</li>
+            <li>100% milestone: already achieved</li>
+          </ul>
+        `;
+
+        comparisonBox.innerHTML = `
+          <h3>Contribution Insight</h3>
+          <p>
+            Because the goal is already achieved, the next best move is not necessarily increasing contribution speed.
+            It may be setting a higher target, improving asset allocation, or defining the next strategic objective.
+          </p>
+        `;
+        return;
+      }
+
+      const base = simulate(goal, starting, monthly, annualRate, increase, years);
+      const enhanced = simulate(goal, starting, monthly * 1.15, annualRate, increase, years);
+      const growthOnly = base.balance - base.totalContributions;
+      const shortfallOrSurplus = base.balance - goal;
+
+      if (base.reachedGoal) {
+        statusPill.textContent = "Goal Reachable";
+      } else {
+        statusPill.textContent = "Not Reached In Window";
+      }
+
+      metricsGrid.innerHTML = `
+        <div class="metric">
+          <div class="metric-label">Estimated Time to Goal</div>
+          <div class="metric-value">${base.reachedGoal ? formatYearsMonths(base.months) : "Not reached within " + years + " year(s)"}</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-label">Projected Ending Balance</div>
+          <div class="metric-value">${currency(base.balance)}</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-label">Total Contributions</div>
+          <div class="metric-value">${currency(base.totalContributions - starting)}</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-label">Estimated Growth</div>
+          <div class="metric-value">${currency(growthOnly)}</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-label">Final Monthly Contribution</div>
+          <div class="metric-value">${currency(base.finalMonthlyContribution)}</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-label">Goal Shortfall / Surplus</div>
+          <div class="metric-value">${currency(shortfallOrSurplus)}</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-label">Annual Return Assumption</div>
+          <div class="metric-value">${annualRate.toFixed(2)}%</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-label">Annual Contribution Increase</div>
+          <div class="metric-value">${increase.toFixed(2)}%</div>
+        </div>
+      `;
+
+      let summaryText = "";
+      if (base.reachedGoal && base.months <= 60) {
+        summaryText = `This plan reaches the ${goalType.toLowerCase()} target on a relatively fast timeline. The strongest driver is your current savings rate relative to the target, supported by compounding and disciplined contribution behavior.`;
+      } else if (base.reachedGoal && base.months <= 180) {
+        summaryText = `This plan reaches the ${goalType.toLowerCase()} target on a solid long-term path. The projection shows that consistency, plus modest growth in contributions, can produce a strong result without relying on extreme assumptions.`;
+      } else if (base.reachedGoal) {
+        summaryText = `This plan still reaches the ${goalType.toLowerCase()} target, but over a longer horizon. That suggests the objective is achievable, though contribution increases or a higher savings rate would materially improve speed and flexibility.`;
+      } else {
+        summaryText = `Under the current assumptions, the ${goalType.toLowerCase()} target is not fully reached within the selected projection window. The result suggests that either the time horizon is too short, the contribution rate is too low, or the target itself requires a stronger capital accumulation plan.`;
+      }
+
+      summaryBox.innerHTML = `
+        <h3>Executive Summary</h3>
+        <p>${summaryText}</p>
+      `;
+
+      milestoneBox.innerHTML = `
+        <h3>Milestone Timeline</h3>
+        <ul class="milestone-list">
+          <li>25% funded: ${base.milestone25 !== null ? formatYearsMonths(base.milestone25) : "Not reached"}</li>
+          <li>50% funded: ${base.milestone50 !== null ? formatYearsMonths(base.milestone50) : "Not reached"}</li>
+          <li>75% funded: ${base.milestone75 !== null ? formatYearsMonths(base.milestone75) : "Not reached"}</li>
+          <li>100% funded: ${base.milestone100 !== null ? formatYearsMonths(base.milestone100) : "Not reached"}</li>
+        </ul>
+      `;
+
+      if (enhanced.reachedGoal && base.reachedGoal) {
+        comparisonBox.innerHTML = `
+          <h3>Contribution Insight</h3>
+          <p>
+            Increasing your monthly contribution by 15% improves the timeline from
+            <strong>${formatYearsMonths(base.months)}</strong> to
+            <strong>${formatYearsMonths(enhanced.months)}</strong>.
+            This shows how even moderate increases in contribution level can materially accelerate the result.
+          </p>
+        `;
+      } else if (!base.reachedGoal && enhanced.reachedGoal) {
+        comparisonBox.innerHTML = `
+          <h3>Contribution Insight</h3>
+          <p>
+            Your current plan does not reach the target within the selected time horizon, but increasing the monthly
+            contribution by 15% would make the goal reachable in <strong>${formatYearsMonths(enhanced.months)}</strong>.
+            That makes the savings rate the most influential lever in this scenario.
+          </p>
+        `;
+      } else {
+        comparisonBox.innerHTML = `
+          <h3>Contribution Insight</h3>
+          <p>
+            Even with a 15% increase in monthly contributions, the projection does not materially solve the gap within
+            the selected time horizon. In this case, the strongest improvements would likely come from a combination of
+            higher savings, a longer time horizon, or a revised target structure.
+          </p>
+        `;
+      }
+    }
+
+    function resetFields() {
+      ["goal", "starting", "monthly", "rate", "increase", "years"].forEach(id => {
+        document.getElementById(id).value = "";
+      });
+      document.getElementById("goalType").value = "General Wealth Goal";
+      document.getElementById("statusPill").textContent = "Awaiting Inputs";
+      document.getElementById("progressFill").style.width = "0%";
+      document.getElementById("progressLabel").textContent = "0%";
+
+      document.getElementById("metricsGrid").innerHTML = `
+        <div class="metric">
+          <div class="metric-label">Estimated Time to Goal</div>
+          <div class="metric-value">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Projected Ending Balance</div>
+          <div class="metric-value">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Total Contributions</div>
+          <div class="metric-value">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Estimated Growth</div>
+          <div class="metric-value">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Final Monthly Contribution</div>
+          <div class="metric-value">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Goal Shortfall / Surplus</div>
+          <div class="metric-value">—</div>
+        </div>
+      `;
+
+      document.getElementById("summaryBox").innerHTML = `
+        <h3>Executive Summary</h3>
+        <p>Run the projection to see your outcome summary.</p>
+      `;
+
+      document.getElementById("milestoneBox").innerHTML = `
+        <h3>Milestone Timeline</h3>
+        <p>Milestones will appear here after your projection runs.</p>
+      `;
+
+      document.getElementById("comparisonBox").innerHTML = `
+        <h3>Contribution Insight</h3>
+        <p>This section will compare your current plan against a slightly stronger contribution scenario.</p>
+      `;
+    }
+  </script>
+</body>
+</html>
